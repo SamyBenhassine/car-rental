@@ -1,0 +1,107 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        icon="caret-back"
+        (click)="goToCarPage()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Créer une voiture</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="car-creation">
+  <div>
+    <form [formGroup]="carForm" class="car-form">
+      <ion-item>
+        <ion-input
+          label="Marque"
+          labelPlacement="stacked"
+          placeholder="Toyota"
+          formControlName="marque"
+        >
+        </ion-input>
+      </ion-item>
+      @if (carForm.get('marque')?.dirty) { @if
+      (carForm.get('marque')?.errors?.['required']) {
+      <span class="span-error">{{requiredFieldMessage}}</span>
+      } @if (carForm.get('marque')?.errors?.['minlength']) {
+      <span class="span-error"
+        >La marque doit contenir au moins 2 caractères</span
+      >
+      } }
+
+      <ion-item>
+        <ion-input
+          label="Modèle"
+          labelPlacement="stacked"
+          placeholder="Yaris"
+          formControlName="model"
+        >
+        </ion-input>
+      </ion-item>
+      @if (carForm.get('model')?.dirty) { @if
+      (carForm.get('model')?.errors?.['required']) {
+      <span class="span-error">{{requiredFieldMessage}}</span>
+      } @if (carForm.get('model')?.errors?.['minlength']) {
+      <span class="span-error"
+        >Le modèle doit contenir au moins 2 caractères</span
+      >
+      } }
+
+      <ion-item>
+        <ion-input
+          label="Plaque d'immatriculation"
+          labelPlacement="stacked"
+          placeholder="AB-123-CB"
+          formControlName="plate"
+        >
+        </ion-input>
+      </ion-item>
+      @if (carForm.get('plate')?.dirty) { @if
+      (carForm.get('plate')?.errors?.['required']) {
+      <span class="span-error">This field is required</span>
+      } @if (carForm.get('plate')?.errors?.['minlength']) {
+      <span class="span-error"
+        >La plaque d'immatriculation doit doit contenir au moins 2
+        caractères</span
+      >
+      } }
+
+      <ion-item>
+        <ion-input
+          label="Avant de la voiture"
+          labelPlacement="stacked"
+          placeholder="url"
+          formControlName="carFrontImage"
+        >
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Arrière de la voiture"
+          labelPlacement="stacked"
+          placeholder="url"
+          formControlName="carBackImage"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (picutreErrorMessage) {
+      <span class="span-error">{{ picutreErrorMessage }}</span>
+      }
+
+      <div class="container-button">
+        <ion-button expand="full"
+          size="medium"
+          [disabled]="carForm.invalid"
+          (click)="onSave()"
+          onkeypress="onSave()"
+        >
+          Enregistrer
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,126 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="register">
+  <div>
+    <form [formGroup]="registerForm" class="register-form">
+      <ion-item>
+        <ion-input
+          label="Nom complet"
+          label-placement="stacked"
+          placeholder="John Doe"
+          formControlName="fullName"
+        />
+      </ion-item>
+      @if (registerForm.get('fullName')?.dirty) { @if
+      (registerForm.get('fullName')?.errors?.['required']) {
+      <span class="span-error">{{requiredFieldMessage}}</span>
+      } @if (registerForm.get('fullName')?.errors?.['minlength']) {
+      <span class="span-error"
+        >Le nom complet doit contenir au moins 2 caractères</span
+      >
+      } }
+
+      <ion-item>
+        <ion-input
+          label="E-mail"
+          label-placement="stacked"
+          placeholder="email@example.com"
+          formControlName="email"
+        />
+      </ion-item>
+      @if (registerForm.get('email')?.dirty) { @if
+      (registerForm.get('email')?.errors?.['required']) {
+      <span class="span-error">{{requiredFieldMessage}}</span>
+      } @if (registerForm.get('email')?.errors?.['email']) {
+      <span class="span-error">Veuillez entrer une adresse e-mail valide</span>
+      } }
+
+      <ion-item>
+        <ion-input
+          label="Numéro de téléphone"
+          label-placement="stacked"
+          placeholder="0780335698"
+          formControlName="phoneNumber"
+          type="tel"
+        />
+      </ion-item>
+      @if (registerForm.get('phoneNumber')?.dirty) { @if
+      (registerForm.get('email')?.errors?.['required']) {
+      <span class="span-error">{{requiredFieldMessage}}</span>
+      } @if (registerForm.get('email')?.errors?.['email']) {
+      <span class="span-error">Veuillez entrer une adresse e-mail valide</span>
+      } }
+
+      <ion-item>
+        <ion-input
+          label="Mot de passe"
+          label-placement="stacked"
+          [type]="passwordType"
+          placeholder="********"
+          formControlName="password"
+        />
+        <ion-icon
+          id="icon-eye"
+          [name]="passwordIcon"
+          (click)="onToggleShowPassword()"
+          onkeypress="onToggleShowPassword()"
+        />
+      </ion-item>
+      @if (registerForm.get('password')?.dirty) { @if
+      (registerForm.get('password')?.errors?.['required']) {
+      <span class="span-error">{{requiredFieldMessage}}</span>
+      } @if (registerForm.get('password')?.errors?.['minlength']) {
+      <span class="span-error"
+        >Votre mot de passe doit contenir au moins 8 caractères</span
+      >
+      } }
+
+      <ion-item>
+        <ion-input
+          label="Confirmation du mot de passe"
+          label-placement="stacked"
+          [type]="passwordType"
+          placeholder="***********"
+          formControlName="confirmPassword"
+        />
+        <ion-icon
+          id="icon-eye"
+          [name]="passwordIcon"
+          (click)="onToggleShowPassword()"
+          onkeypress="onToggleShowPassword()"
+        />
+      </ion-item>
+      @if (registerForm.get('password')?.dirty) { @if
+      (registerForm.get('password')?.errors?.['required']) {
+      <span class="span-error">{{requiredFieldMessage}}</span>
+      } @if (registerForm.get('password')?.errors?.['minlength']) {
+      <span class="span-error"
+        >Votre mot de passe doit contenir au moins 8 caractères</span
+      >
+      } @if (registerForm.errors?.['passwordMismatch']) {
+      <span class="span-error">Les mots de passe ne correspondent pas</span>
+      } }
+
+      <div class="container-button">
+        <ion-button expand="full"
+          size="medium"
+          [disabled]="registerForm.invalid"
+          (click)="onSignUp()"
+          onkeypress="onSignUp()"
+        >
+          S'inscrire
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+  <div class="login-link">
+    <p>
+      Vous avez déjà un compte ? <a (click)="goToLogin()">Se connecter</a>
+    </p>
+  </div>
+</ion-content>

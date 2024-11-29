@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        icon="caret-back"
+        (click)="goToCarPage()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Détail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="car-detail">
+<div *ngIf="car">
+  <ion-list lines="none">
+    
+    <ion-item>
+      <ion-label>Marque</ion-label>
+      <ion-text>{{ car.marque }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Modèle</ion-label>
+      <ion-text>{{ car.model }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Plaque d'immatriculation</ion-label>
+      <ion-text>{{ car.plate }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Photo avant</ion-label>
+      <img
+        [src]="car.carFrontImage ? car.carFrontImage  : 'https://ionicframework.com/docs/img/demos/card-media.png'"
+        alt="Avant de la voiture"
+      />
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Photo arrière</ion-label>
+      <img
+        [src]="car.carBackImage ? car.carBackImage  : 'https://ionicframework.com/docs/img/demos/card-media.png'"
+        alt="Arrière de la voiture"
+      />
+    </ion-item>
+  </ion-list>
+</div>
+</ion-content>
